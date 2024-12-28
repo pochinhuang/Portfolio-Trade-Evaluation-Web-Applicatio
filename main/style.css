@@ -1,0 +1,293 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* background: #102A43; */
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  background: #102A43;
+}
+
+
+h1 {
+  background: #102A43;
+  color: #FAF3E3;
+  padding: 10px 0;
+}
+
+h2 {
+  text-align: left;
+  color: #FAF3E3;
+}
+
+
+/* 容器佈局 */
+.container {
+  display: flex;
+  overflow-y: auto;
+  padding-bottom: 200px; 
+  background: #102A43;
+}
+
+.sidebar 
+{
+  background: #102A43;
+  color: #FAF3E3; 
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 0 0 10%;
+  max-width: 250px; 
+  /* border-radius: 8px; */
+}
+
+.sidebar button {
+  width: 100%; 
+  padding: 10px 0; 
+  margin: 5px 0; 
+  background-color: #334E68; 
+  color: #FAF3E3; 
+  border: none; 
+  border-radius: 4px;
+  cursor: pointer; 
+  transition: background-color 0.2s ease; 
+}
+
+.sidebar button:hover {
+  background: #486581; 
+}
+
+
+#data-container {
+  flex-grow: 1;
+  padding: 10px;
+  background: #102A43;
+  overflow: auto;
+}
+
+/* 表格樣式 */
+table {
+  width: 99%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+
+table th,
+table td {
+  padding: 10px; 
+  border: 1px solid #E0E0E0;
+  vertical-align: middle; 
+  
+}
+
+table th {
+  background: #102A43;
+  color: #FAF3E3;
+  text-align: left;
+}
+
+table tr:hover {
+  background-color: #F0EDE4;
+}
+
+table th:first-child,
+table td:first-child {
+    text-align: center;
+    width: 50px;
+}
+
+table tr:nth-child(odd) {
+  background-color: #F8F4EC;
+}
+table tr:nth-child(even) {
+  background-color: #FFFFFF;
+}
+
+
+#filter-assets-btn,
+
+#clear-filter-btn,
+#filter-underlying-btn,
+
+#filter-derivative-btn,
+#clear-filter-btn-underlying,
+
+#clear-filter-btn-derivative,
+#clear-filter-btn-rate,
+
+#evaluate-trade
+{
+  width: 10%; 
+  padding: 10px 0;
+  margin: 5px 0;
+  background-color: #334E68;
+  color: #FAF3E3;
+  border: none; 
+  border-radius: 4px;
+  cursor: pointer; 
+  transition: background-color 0.2s ease; 
+}
+
+#filter-assets-btn:hover,
+
+#clear-filter-btn:hover,
+#filter-underlying-btn:hover,
+
+#filter-derivative-btn:hover,
+#clear-filter-btn-underlying:hover,
+
+#clear-filter-btn-derivative:hover,
+#clear-filter-btn-rate:hover,
+
+#evaluate-trade:hover
+{
+  background: #486581; 
+}
+
+#exchange-container,
+#asset-container,
+#underlying-container,
+#derivative-container,
+#rate-container,
+#trade-container {
+  display: flex;
+}
+
+.button-container {
+  display: flex;
+  gap: 15px;
+}
+
+
+.left-section {
+  flex: 3; 
+  display: flex;
+  flex-direction: column; 
+  gap: 10px; 
+}
+
+
+
+.right-section {
+  flex: 1;
+  padding: 15px;
+  border: 1px solid #CCCCCC;
+  /* border-radius: 5px; */
+  margin-top: 93px; 
+  width: 300px; 
+  /* overflow-y: auto; */
+  box-sizing: border-box; 
+  /* background-color: #FAF3E3; */
+  background-color: #102A43;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; 
+}
+
+#exchange-right{
+  height: 395px;
+  /* background-color: #FAF3E3; */
+}
+
+#asset-right{
+  height: 309px;
+}
+
+#underlying-right{
+  height: 398px;
+}
+
+#derivative-right{
+  height: 827px;
+}
+
+#rate-right{
+  height: 309px;
+}
+
+#trade-right{
+  height: 106px;
+}
+
+
+.trade-section,
+.input-section, 
+.delete-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; 
+  width: 100%;
+  /* height: 100%; */
+}
+
+
+
+.trade-section input,
+.trade-section select,
+.input-section input, 
+.delete-section input {
+  padding: 8px;
+  border: 1px solid #DDD;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box; 
+}
+
+
+.trade-section button,
+.input-section button, 
+.delete-section button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  color: #F5F5DC;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.input-section button {
+  background-color: #334E68;
+}
+
+.input-section button:hover {
+  background-color: #486581;
+}
+
+
+.input-section {
+  margin-bottom: 30px;
+  /* background-color: #fff; 
+  padding: 15px;
+  border-radius: 5px; */
+}
+
+.trade-section{
+  margin-bottom:30px;
+}
+
+
+.delete-section button {
+  background-color: #992222;
+}
+
+.delete-section button:hover {
+  background-color: #B33A3A;
+}
+
+
+.trade-section button {
+  background-color: #3E8E41; 
+}
+
+.trade-section button:hover {
+  background-color: #5AA658;
+}

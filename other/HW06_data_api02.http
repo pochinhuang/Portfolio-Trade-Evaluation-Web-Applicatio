@@ -1,0 +1,6 @@
+@HW06_data_api02_HostAddress = http://localhost:5209
+
+GET {{HW06_data_api02_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Option Portfolio Trade Evaluator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Option Portfolio Trade Evaluator</h1>
+
+
+    <div class="container">
+        
+
+        <div class="sidebar">
+            <button id="exchange-btn">Exchange</button>
+            <button id="asset-btn">Asset</button>
+            <button id="underlying-btn">Underlying</button>
+            <button id="derivative-btn">Derivative</button>
+            <button id="rate-btn">Rate</button>
+            <button id="trade-btn">Trade</button>
+        </div>
+
+
+        <div id="data-container">
+            <!-- Exchange Table -->
+            <div id="exchange-container">
+
+                <div class="left-section">
+                    <h2>Exchange</h2>
+
+
+                    <div class="button-container">
+                        <button id="filter-assets-btn">Select</button>
+                    </div>
+
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Select</th>
+                                <th>Exchange</th>
+                                <th>Exchange Name</th>
+                                <th>Location</th>
+                                <th>Country</th>
+                                <th>Currency</th>
+                            </tr>
+                        </thead>
+                        <tbody id="exchange-data-body">
+                            <tr>
+                                <td colspan="6" style="text-align: center;">Loading Data...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+
+                <div class="right-section" id="exchange-right">
+
+                    <div class="input-section">
+                        <input type="text" id="exchange-id" placeholder="Exchange ID">
+                        <input type="text" id="exchange-name" placeholder="Exchange Name">
+                        <input type="text" id="exchange-location" placeholder="Location">
+                        <input type="text" id="exchange-country" placeholder="Country">
+                        <input type="text" id="exchange-currency" placeholder="Currency">
+                        <button id="add-exchange-btn">Add Exchange</button>
+                    </div>
+
+
+                    <div class="delete-section">
+                        <input type="text" id="delete-exchange-id" placeholder="Enter Exchange ID to Delete">
+                        <button id="delete-exchange-btn">Delete Exchange</button>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- Asset Table -->
+            <div id="asset-container" style="display: none;">
+
+                <div class="left-section">
+                    <h2>Asset</h2>
+                    
+
+                    <div class="button-container">
+                        <button id="filter-underlying-btn">Select</button>
+
+                        <button id="clear-filter-btn">Reset</button>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Select</th>
+                                <th>Asset</th>
+                                <th>Explanation</th>
+                                <th>Exchange</th>
+                            </tr>
+                        </thead>
+                        <tbody id="asset-data-body">
+                            <tr>
+                            <!-- Data will be dynamically added here -->
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+                <div class="right-section" id="asset-right">
+
+                    <div class="input-section">
+                        <input type="text" id="asset-name" placeholder="Asset Name">
+                        <input type="text" id="asset-explanation" placeholder="Explanation">
+                        <input type="text" id="asset-exchange" placeholder="Exchange">
+                        <button id="add-asset-btn">Add Asset</button>
+                    </div>
+
+                    <div class="delete-section">
+                        <input type="text" id="delete-asset-id" placeholder="Enter Asset ID to Delete">
+                        <button id="delete-asset-btn">Delete Asset</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="underlying-container" style="display: none;">
+
+
+                <div class="left-section">
+                    <h2>Underlying</h2>
+                
+
+                    <div class="button-container">
+                        <button id="filter-derivative-btn">Select</button>
+
+                        <button id="clear-filter-btn-underlying">Reset</button>
+                    </div>
+
+                    <table id="underlying-table">
+                        <thead>
+                            <tr>
+                                <th>Select</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Ticker</th>
+                                <th>Price</th>
+                                <th>Asset</th>
+                                <th>Exchange ID</th>
+                            </tr>
+                        </thead>
+                        <tbody id="underlying-data-body">
+                            <!-- Data will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="right-section" id="underlying-right">
+
+                    <div class="input-section">
+                        <input type="text" id="underlying-name" placeholder="Name">
+                        <input type="text" id="underlying-ticker" placeholder="Ticker">
+                        <input type="number" id="underlying-price" placeholder="Price">
+                        <input type="text" id="underlying-asset" placeholder="Asset Type">
+                        <input type="text" id="underlying-exchange-id" placeholder="Exchange ID">
+                        <button id="add-underlying-btn">Add Underlying</button>
+                    </div>
+
+
+                    <div class="delete-section">
+                        <input type="text" id="delete-underlying-id" placeholder="Enter Asset ID to Delete">
+                        <button id="delete-underlying-btn">Delete Asset</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="derivative-container" style="display: none;">
+
+                <div class="left-section">
+                    <h2>Derivative Contracts</h2>
+                    
+
+                    <div class="button-container">
+                        <!-- <button id="select-btn">Select</button> -->
+                        <button id="clear-filter-btn-derivative">Reset</button>
+                    </div>
+            
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Contract Name</th>
+                                <th>Type</th>
+                                <th>Underlying</th>
+                                <th>Strike</th>
+                                <th>Call/Put</th>
+                                <th>Payout</th>
+                                <th>Barrier</th>
+                                <th>Expiration</th>
+                            </tr>
+                        </thead>
+                        <tbody id="derivative-data-body">
+                            <!-- Data will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+            
+
+                <div class="right-section" id="derivative-right">
+
+                    <div class="trade-section">
+                        <input type="text" id="trade-contractid" placeholder="Contract ID">
+                        <input type="text" id="trade-quantity" placeholder="Trade Quantity">
+                        <input type="number" id="trade-price" placeholder="Trade Price">
+                        <select id="trade-rate">
+                            <option value="4.317">Zero Coupon Bonds 1 Year</option>
+                            <option value="4.180">Zero Coupon Bonds 2 Years</option>
+                            <option value="4.087">Zero Coupon Bonds 3 Years</option>
+                            <option value="4.035">Zero Coupon Bonds 4 Years</option>
+                            <option value="4.020">Zero Coupon Bonds 5 Years</option>
+                            <option value="4.032">Zero Coupon Bonds 6 Years</option>
+                            <option value="4.066">Zero Coupon Bonds 7 Years</option>
+                            <option value="4.114">Zero Coupon Bonds 8 Years</option>
+                            <option value="4.173">Zero Coupon Bonds 9 Years</option>
+                            <option value="4.239">Zero Coupon Bonds 10 Years</option>
+                            <option value="4.45">U.S. Treasury 1 Month</option>
+                            <option value="4.40">U.S. Treasury 2 Months</option>
+                            <option value="4.41">U.S. Treasury 3 Months</option>
+                            <option value="4.41">U.S. Treasury 4 Months</option>
+                            <option value="4.36">U.S. Treasury 6 Months</option>
+                            <option value="4.20">U.S. Treasury 1 Year</option>
+                            <option value="4.10">U.S. Treasury 2 Years</option>
+                            <option value="4.06">U.S. Treasury 3 Years</option>
+                            <option value="4.03">U.S. Treasury 5 Years</option>
+                            <option value="4.08">U.S. Treasury 7 Years</option>
+                            <option value="4.15">U.S. Treasury 10 Years</option>
+                            <option value="4.42">U.S. Treasury 20 Years</option>
+                            <option value="4.33">U.S. Treasury 30 Years</option>
+                        </select>
+
+                        <input type="date" id="trade-date" placeholder="Trade Date">
+                        <button id="add-trade-btn">Add Trade</button>
+                    </div>
+
+                    <div class="input-section">
+
+                        <input type="text" id="derivative-contract-name" placeholder="Contract Name">
+                        <input type="text" id="derivative-type" placeholder="Type">
+                        <input type="text" id="derivative-underlying" placeholder="Underlying">
+                        <input type="number" id="derivative-strike" placeholder="Strike">
+                        <input type="text" id="derivative-callput" placeholder="Call/Put">
+                        <input type="text" id="derivative-payout" placeholder="Payout">
+                        <input type="text" id="derivative-barrier" placeholder="Barrier">
+                        <input type="date" id="derivative-expiration" placeholder="Expiration">
+                        <button id="add-derivative-btn">Add Derivative</button>
+                    </div>
+            
+                    <div class="delete-section">
+
+                        <input type="text" id="delete-derivative-id" placeholder="Enter Contract ID to Delete">
+                        <button id="delete-derivative-btn">Delete Derivative</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="rate-container" style="display: none;">
+
+                <div class="left-section">
+                    <h2>Rate Curve</h2>
+                    
+
+                    <div class="button-container">
+                        <button id="clear-filter-btn-rate">Reset</button>
+                    </div>
+
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Maturity (Years)</th>
+                                <th>Zero Coupon Bonds (%)</th>
+                                <th>U.S. Treasurys (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ratecurve-data-body">
+                            <!-- Data will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="right-section" id="rate-right">
+                    <div class="input-section">
+                        <input type="number" id="ratecurve-maturity" placeholder="Maturity (Years)">
+                        <input type="number" id="ratecurve-zero-bonds" placeholder="Zero Coupon Bonds (%)">
+                        <input type="number" id="ratecurve-us-treasurys" placeholder="U.S. Treasurys (%)">
+                        <button id="add-ratecurve-btn">Add Rate Curve</button>
+                    </div>
+
+                    <div class="delete-section">
+                        <input type="text" id="delete-ratecurve-id" placeholder="Enter ID to Delete">
+                        <button id="delete-ratecurve-btn">Delete Rate Curve</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="trade-container" style="display: none;">
+
+                <!-- Trade Right -->
+                <div class="left-section">
+                    <h2>Trade</h2>
+                    
+
+                    <div class="button-container">
+                        <button id="evaluate-trade">Evaluate</button>
+                    </div>
+            
+                    <!-- Trade Table -->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Contract Name</th>
+                                <th>Type</th>
+                                <!-- <th>Underlying</th>
+                                <th>Strike</th> -->
+                                <th>Call/Put</th>
+                                <!-- <th>Payout</th>
+                                <th>Barrier</th>
+                                <th>Expiration Date</th>
+                                <th>Stock Price</th> -->
+                                <th>Trade Quantity</th>
+                                <th>Trade Price</th>
+                                <!-- <th>Risk-Free Rate</th> -->
+                                <th>Trade Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="trade-data-body">
+                            <!-- Data will be dynamically added here -->
+                        </tbody>
+                    </table>
+
+                    <h2>Evaluation</h2>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Contract Name</th>
+                                <th>Quantity</th>
+                                <th>Trade Price</th>
+                                <th>Simulate Price</th>
+                                <!-- <th>Standard Error σ/(√n)</th>
+                                <th>Delta Δ</th>
+                                <th>Gamma Γ</th>
+                                <th>Vega ν</th>
+                                <th>Theta Θ</th>
+                                <th>Rho ρ</th> -->
+                                <th style="text-align: center;">σ/(√n)</th>
+                                <th style="text-align: center;">Δ</th>
+                                <th style="text-align: center;">Γ</th>
+                                <th style="text-align: center;">ν</th>
+                                <th style="text-align: center;">Θ</th>
+                                <th style="text-align: center;">ρ</th>     
+                                <!-- <th>σ/(√n)</th>
+                                <th>Δ</th>
+                                <th>Γ</th>
+                                <th>ν</th>
+                                <th>Θ</th>
+                                <th>ρ</th>                                 -->
+                            </tr>
+                        </thead>
+                        <tbody id="simulation-data-body">
+                            <!-- Data will be dynamically added here -->
+                        </tbody>
+                    </table>
+
+                </div>
+            
+                <!-- Trade Right -->
+                <div class="right-section" id="trade-right">     
+                    <div class="delete-section">
+                        <input type="text" id="delete-trade-id" placeholder="Enter ID to Delete">
+                        <button id="delete-trade-btn">Delete Trade</button>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+
+    <script src="index02.js"></script>
+</body>
+</html>
